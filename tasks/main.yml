@@ -1,0 +1,35 @@
+---
+
+- name: install php packages
+  apt: pkg={{ item }}
+       update_cache=yes
+  with_items:
+    - libmcrypt4
+    - libpcre3-dev
+    - php5-fpm
+    - php5-cli
+    - php5-dev
+    - php5-curl
+    - php5-mcrypt
+    - php5-mysqlnd
+    - php5-memcached
+    - php5-redis
+
+# - name: enable php5 module
+#   command: php5enmod {{ item }}
+#   with_items:
+#     - mcrypt
+
+- name: configure php5-fpm
+  template: src=php-fpm.conf
+            dest="/etc/php5/fpm/php-fpm.conf"
+            owner=root group=root mode=0644
+  notify: restart php5-fpm
+
+- name: start php5-fpm
+  service: name=php5-fpm state=started enabled=true
+
+- name: install composer
+  shell: curl -sS https://getcomposer.org/installer | php && ln -s composer.phar composer
+         chdir=/usr/local/bin
+         creates=/usr/local/bin/composer

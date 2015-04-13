@@ -1,0 +1,16 @@
+---
+
+fpm_user: nobody
+fpm_group: nobody
+
+fpm_listen: '/var/run/php5-fpm.sock'
+fpm_listen_user: nobody
+fpm_listen_group: nobody
+fpm_listen_mode: 0666
+
+fpm_pm: dynamic
+fpm_max_requests: 999
+fpm_max_children: 64
+fpm_start_servers: 8
+fpm_min_spare_server: 8
+fpm_max_spare_server: 32
