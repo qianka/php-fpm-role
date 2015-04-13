@@ -1,11 +1,11 @@
 ---
 
-fpm_user: nobody
-fpm_group: nobody
+fpm_user: www-data
+fpm_group: www-data
 
 fpm_listen: '/var/run/php5-fpm.sock'
-fpm_listen_user: nobody
-fpm_listen_group: nobody
+fpm_listen_user: www-data
+fpm_listen_group: www-data
 fpm_listen_mode: 0666
 
 fpm_pm: dynamic
